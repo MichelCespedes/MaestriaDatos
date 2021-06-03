@@ -13,6 +13,32 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import scale
 
 ###############################################################
+################ DESCRIPCION ###############################
+###############################################################
+
+def base(df):
+    result = pd.DataFrame()
+    
+    columnas = df.columns.to_list()
+    tipo = []
+    unico = []
+    nulls = []
+    for col in df.columns.to_list():
+        tipo.append(df[col].dtype)
+        unico.append(len(df[col].unique()))
+        nulls.append(len(df[df[col].isnull()]))
+        
+    result['Columnas'] = df.columns.to_list()
+    result['Tipo'] = tipo
+    result['Único'] = unico
+    result['Nulos'] = nulls
+    
+    return result
+    
+
+
+
+###############################################################
 ################ CORRELACIONES ###############################
 ###############################################################
 
